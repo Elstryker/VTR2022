@@ -5,6 +5,12 @@ from perlin_noise import PerlinNoise
 def perlin_map(width,height,file_path,seed,octaves):
 
     noise = PerlinNoise(octaves=octaves, seed=seed)
-    pic = np.array([[((noise([i/width, j/height])+1)*127.5) for j in range(width)] for i in range(height)])
+    pic = np.zeros((width,height,3))
+
+    for i in range(width):
+        for j in range(height):
+            value = (noise([i/width, j/height])+1)*127.5
+            for k in range(3):
+                pic[i][j][k] = value
 
     cv2.imwrite(file_path,pic)

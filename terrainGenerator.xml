@@ -4,7 +4,7 @@
 	
 		<scenes>
 			<scene name="MyScene" param="UNITIZE SWAP_YZ">
-				<file name="models/grid2.obj"/>
+				<file name="models/grid.obj"/>
 			</scene>
 		</scenes>
 		
@@ -18,7 +18,7 @@
 			<camera name="MainCamera" >
 				<viewport name="MainViewport" />
 				<NEAR value= 0.001/>
-				<FAR value= 10/>
+				<FAR value= 1000/>
 				<POSITION x=0 y=3 z=0 />
 				<VIEW x=0 y=0 z=1 />
 			</camera>
