@@ -1,8 +1,7 @@
-import cv2
 import numpy as np
 from perlin_noise import PerlinNoise
 
-def perlin_map(width,height,file_path,seed,octaves):
+def perlin_map(width,height,seed,octaves):
 
     noise = PerlinNoise(octaves=octaves, seed=seed)
     pic = np.zeros((width,height,3))
@@ -13,4 +12,4 @@ def perlin_map(width,height,file_path,seed,octaves):
             for k in range(3):
                 pic[i][j][k] = value
 
-    cv2.imwrite(file_path,pic)
+    return pic
