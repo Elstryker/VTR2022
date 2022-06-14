@@ -2,7 +2,7 @@
 <materialLib name="HeightMap">
 
 	<textures>
-		<texture name="height" filename="textures/perlin_map.jpg" mipmap=true />
+		<texture name="height" filename="textures/perlin_map2.png" mipmap=true />
 	</textures>
 
 	<shaders>
