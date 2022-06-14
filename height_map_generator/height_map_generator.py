@@ -34,15 +34,17 @@ Choose type of map:
     menu()
 
 def get_perlin_map():
-
     width = int(input("Width: "))
     height = int(input("height: "))
-    img_path = input("img path: ")
+    scale = float(input("scale: "))
+    octave = int(input("octaves: "))
+    persistance = float(input("persistance: "))
+    lacunarity = float(input("lacunarity: "))
     seed = int(input("seed: "))
-    octave = int(input("octave: "))
+    img_path = input("img path: ")
 
 
-    pic = perlin_map.perlin_map(width,height,seed,octave)
+    pic = perlin_map.perlin_map(width,height,scale,octave,persistance,lacunarity,seed)
     cv2.imwrite(img_path,pic)
     print("\nImage created with success!")
 

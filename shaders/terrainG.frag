@@ -37,5 +37,10 @@ void main() {
 		// compute the specular term into spec
 		spec = specular * pow(intSpec,shininess);
 	}
+
+	if (height >= 0) color = vec4(0,0.20,0.525,1);
+	if (height > 0.2) color = vec4(0.3,0.76,0.15,1);
+	if (height > 0.55) color = vec4(0.65,0.35,0.125,1);
+	if (height > 0.85) color = vec4(0.98,0.98,0.98,1);
 	colorOut = color;
 }

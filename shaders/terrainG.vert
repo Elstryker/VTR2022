@@ -30,5 +30,5 @@ void main () {
 
 
 
-	gl_Position = m_pvm * normalize ((position + vec4(0,height,0,1)) * vec4(10,5,10,1));	
+	gl_Position = m_pvm * normalize ((position + vec4(0,height,0,1)) * vec4(20,8,20,1));	
 }
