@@ -37,10 +37,17 @@ void main() {
 		// compute the specular term into spec
 		spec = specular * pow(intSpec,shininess);
 	}
-
-	if (height >= 0) color = vec4(0,0.20,0.525,1);
+	float f1 = smoothstep(0.19,0.21,height);
+	float f2 = smoothstep(0.54,0.56,height);
+	float f3 = smoothstep(0.84,0.86,height);
+	if (f1==0) color = vec4(0,0.20,0.525,1);
+	else if (f1<1) color = mix(vec4(0,0.20,0.525,1),vec4(0.3,0.76,0.15,1),f1);
+	else if (f2<1) color = mix(vec4(0.3,0.76,0.15,1),vec4(0.65,0.35,0.125,1),f2);
+	else if (f3<1) color = mix(vec4(0.65,0.35,0.125,1),vec4(0.98,0.98,0.98,1),f3);
+	else color = vec4(0.98,0.98,0.98,1);
+	/*if (height >= 0) color = vec4(0,0.20,0.525,1);
 	if (height > 0.2) color = vec4(0.3,0.76,0.15,1);
 	if (height > 0.55) color = vec4(0.65,0.35,0.125,1);
-	if (height > 0.85) color = vec4(0.98,0.98,0.98,1);
+	if (height > 0.85) color = vec4(0.98,0.98,0.98,1);*/
 	colorOut = color;
 }
