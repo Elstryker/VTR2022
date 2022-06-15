@@ -2,7 +2,8 @@
 <materialLib name="HeightMap">
 
 	<textures>
-		<texture name="height" filename="textures/perlin_map2.png" mipmap=true />
+		<texture name="height_map" filename="textures/perlin_map2.png" mipmap=true />
+		<texture name="color_map" filename="textures/cmap.png" mipmap=true />
 	</textures>
 
 	<shaders>
@@ -22,9 +23,13 @@
 							 type="COLOR" context="CURRENT" 
 							 component="DIFFUSE" />
 							 
-					<valueof uniform="tex"
+					<valueof uniform="height_map"
 							 type="TEXTURE_BINDING" context="CURRENT"
 							 component="UNIT" id=0 />
+					
+					<valueof uniform="color_map"
+							 type="TEXTURE_BINDING" context="CURRENT"
+							 component="UNIT" id=1 />
 							 
 					<valueof uniform="m_normal" 
 							 type="RENDERER" context="CURRENT" 
@@ -52,7 +57,8 @@
 				</values>
 			</shader>
 			<textures>
-				<texture name="height" UNIT = 0 />
+				<texture name="height_map" UNIT = 0 />
+				<texture name="color_map" UNIT = 1 />
 			</textures>
 		</material>
 	</materials>

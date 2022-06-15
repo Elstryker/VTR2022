@@ -1,5 +1,8 @@
 #version 330
 
+uniform sampler2D height_map;
+uniform sampler2D color_map;
+
 uniform	mat4 m_pvm;
 uniform	mat4 m_viewModel;
 uniform	mat4 m_view;
@@ -10,7 +13,6 @@ in vec4 position;	// local space
 in vec3 normal;		// local space
 in vec2 texCoord0;
 
-uniform sampler2D tex;
 // the data to be sent to the fragment shader
 out Data {
 	vec4 eye;
@@ -21,7 +23,7 @@ out Data {
 
 void main () {
 
-	float height = texture(tex, texCoord0).r;
+	float height = texture(height_map, texCoord0).r;
 
 	DataOut.normal = normalize(m_normal * normal);
 	DataOut.eye = -(m_viewModel * position);

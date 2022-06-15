@@ -1,6 +1,8 @@
 #version 330
 
-uniform sampler2D tex;
+uniform sampler2D height_map;
+uniform sampler2D color_map;
+
 uniform	vec4 diffuse;
 uniform	vec4 specular;
 uniform	float shininess;
@@ -17,9 +19,9 @@ out vec4 colorOut;
 void main() {
 
 	// set the specular term to black
-    vec4 color = texture(tex, DataIn.texCoord);
+    vec4 color = texture(color_map, DataIn.texCoord);
 	vec4 spec = vec4(0.0);
-    float height = color.r;
+    float height = texture(height_map, DataIn.texCoord).r;
 
 	// normalize both input vectors
 	vec3 n = normalize(DataIn.normal);
@@ -49,5 +51,7 @@ void main() {
 	if (height > 0.2) color = vec4(0.3,0.76,0.15,1);
 	if (height > 0.55) color = vec4(0.65,0.35,0.125,1);
 	if (height > 0.85) color = vec4(0.98,0.98,0.98,1);*/
+	//if (height >= 0.5) color = vec4(0,0,1,1);
+	//else color = vec4(0,1,0,1);
 	colorOut = color;
 }
