@@ -4,6 +4,10 @@
 	<textures>
 		<texture name="height_map" filename="textures/perlin_map2.png" mipmap=true />
 		<texture name="color_map" filename="textures/cmap.png" mipmap=true />
+		<texture name="sea" filename="textures/sea.jpg" mipmap=true />
+		<texture name="grass" filename="textures/relva.jpg" mipmap=true />
+		<texture name="rock" filename="textures/rock.jpg" mipmap=true />
+		<texture name="snow" filename="textures/snow.jpg" mipmap=true />
 	</textures>
 
 	<shaders>
@@ -30,7 +34,23 @@
 					<valueof uniform="color_map"
 							 type="TEXTURE_BINDING" context="CURRENT"
 							 component="UNIT" id=1 />
-							 
+										
+					<valueof uniform="sea"
+							 type="TEXTURE_BINDING" context="CURRENT"
+							 component="UNIT" id=2 />
+					
+					<valueof uniform="grass"
+							 type="TEXTURE_BINDING" context="CURRENT"
+							 component="UNIT" id=3 />
+					
+					<valueof uniform="rock"
+							 type="TEXTURE_BINDING" context="CURRENT"
+							 component="UNIT" id=4 />
+					
+					<valueof uniform="snow"
+							 type="TEXTURE_BINDING" context="CURRENT"
+							 component="UNIT" id=5 />		 
+						
 					<valueof uniform="m_normal" 
 							 type="RENDERER" context="CURRENT" 
 							 component="NORMAL" />
@@ -66,6 +86,10 @@
 					<valueof uniform="curve_max" 
 							 type="COLOR" context="CURRENT" 
 							 component="curve_max" />
+
+					<valueof uniform="with_texture" 
+							 type="COLOR" context="CURRENT" 
+							 component="with_texture" />
 							 
 					<valueof uniform="sea_level" 
 							 type="COLOR" context="CURRENT" 
@@ -100,6 +124,10 @@
 			<textures>
 				<texture name="height_map" UNIT = 0 />
 				<texture name="color_map" UNIT = 1 />
+				<texture name="sea" UNIT = 2 />
+				<texture name="grass" UNIT = 3 />
+				<texture name="rock" UNIT = 4 />
+				<texture name="snow" UNIT = 5 />
 			</textures>
 		</material>
 	</materials>

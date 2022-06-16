@@ -1,5 +1,6 @@
 #version 330
 
+uniform int with_texture;
 uniform float sea_level;
 uniform float sl_gap;
 uniform float grass_level;
@@ -9,6 +10,11 @@ uniform float rl_gap;
 
 uniform sampler2D height_map;
 uniform sampler2D color_map;
+
+uniform sampler2D sea;
+uniform sampler2D grass;
+uniform sampler2D rock;
+uniform sampler2D snow;
 
 uniform	vec4 diffuse;
 uniform	vec4 specular;
@@ -25,6 +31,11 @@ in Data {
 out vec4 colorOut;
 
 void main() {
+	//get textures
+	vec4 sea_t = texture(sea, DataIn.texCoord);
+	vec4 grass_t = texture(grass, DataIn.texCoord);
+	vec4 rock_t = texture(rock, DataIn.texCoord);
+	vec4 snow_t = texture(snow, DataIn.texCoord);
 
 	// set the specular term to black
     vec4 color = texture(color_map, DataIn.texCoord);
@@ -51,11 +62,21 @@ void main() {
 	float f1 = smoothstep(sea_level-sl_gap,sea_level+sl_gap,DataIn.smoothHeight);
 	float f2 = smoothstep(grass_level-gll_gap,grass_level+gll_gap,DataIn.smoothHeight);
 	float f3 = smoothstep(rock_level-rl_gap,rock_level+rl_gap,DataIn.smoothHeight);
-	if (f1==0) color = vec4(0,0.20,0.525,1);
-	else if (f1<1) color = mix(vec4(0,0.20,0.525,1),vec4(0.3,0.76,0.15,1),f1);
-	else if (f2<1) color = mix(vec4(0.3,0.76,0.15,1),vec4(0.65,0.35,0.125,1),f2);
-	else if (f3<1) color = mix(vec4(0.65,0.35,0.125,1),vec4(0.98,0.98,0.98,1),f3);
-	else color = vec4(0.98,0.98,0.98,1);
+
+	if (with_texture==0){
+		if (f1==0) color = vec4(0,0.20,0.525,1);
+		else if (f1<1) color = mix(vec4(0,0.20,0.525,1),vec4(0.3,0.76,0.15,1),f1);
+		else if (f2<1) color = mix(vec4(0.3,0.76,0.15,1),vec4(0.65,0.35,0.125,1),f2);
+		else if (f3<1) color = mix(vec4(0.65,0.35,0.125,1),vec4(0.98,0.98,0.98,1),f3);
+		else color = vec4(0.98,0.98,0.98,1);
+	}
+	else{
+		if (f1==0) color = sea_t;
+		else if (f1<1) color = mix(sea_t,grass_t,f1);
+		else if (f2<1) color = mix(grass_t,rock_t,f2);
+		else if (f3<1) color = mix(rock_t,snow_t,f3);
+		else color = snow_t;
+	}
 	/*if (height >= 0) color = vec4(0,0.20,0.525,1);
 	if (height > 0.2) color = vec4(0.3,0.76,0.15,1);
 	if (height > 0.55) color = vec4(0.65,0.35,0.125,1);

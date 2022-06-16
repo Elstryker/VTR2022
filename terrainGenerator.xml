@@ -14,6 +14,8 @@
 			<attribute type="COLOR" name="gll_gap" data="FLOAT" value=0.01 />
 			<attribute type="COLOR" name="rock_level" data="FLOAT" value=0.85 />
 			<attribute type="COLOR" name="rl_gap" data="FLOAT" value=0.01 />
+
+			<attribute type="COLOR" name="with_texture" data="INT" value=0 />
 		</attributes>
 	
 		<scenes>
@@ -78,6 +80,8 @@
 				type="COLOR" context="HeightMap::terrainG" component="curve_max" def="min=0 max=1 step=0.01"/>
 		</window>
 		<window label="Color Levels">
+			<var label="with_texture" 
+				type="COLOR" context="HeightMap::terrainG" component="with_texture" def="min=0 max=1 step=1"/>
 			<var label="sea_level" 
 				type="COLOR" context="HeightMap::terrainG" component="sea_level" def="min=0 max=1 step=0.01"/>
 			<var label="sl_gap" 
