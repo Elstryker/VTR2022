@@ -1,5 +1,12 @@
 #version 330
 
+uniform float sea_level;
+uniform float sl_gap;
+uniform float grass_level;
+uniform float gll_gap;
+uniform float rock_level;
+uniform float rl_gap;
+
 uniform sampler2D height_map;
 uniform sampler2D color_map;
 
@@ -12,6 +19,7 @@ in Data {
 	vec3 normal;
 	vec3 l_dir;
     vec2 texCoord;
+	float smoothHeight;
 } DataIn;
 
 out vec4 colorOut;
@@ -21,7 +29,8 @@ void main() {
 	// set the specular term to black
     vec4 color = texture(color_map, DataIn.texCoord);
 	vec4 spec = vec4(0.0);
-    float height = texture(height_map, DataIn.texCoord).r;
+    float height_c = texture(height_map, DataIn.texCoord).r;
+	float height = smoothstep(0.8,0.9,height_c);
 
 	// normalize both input vectors
 	vec3 n = normalize(DataIn.normal);
@@ -39,9 +48,9 @@ void main() {
 		// compute the specular term into spec
 		spec = specular * pow(intSpec,shininess);
 	}
-	float f1 = smoothstep(0.19,0.21,height);
-	float f2 = smoothstep(0.54,0.56,height);
-	float f3 = smoothstep(0.84,0.86,height);
+	float f1 = smoothstep(sea_level-sl_gap,sea_level+sl_gap,DataIn.smoothHeight);
+	float f2 = smoothstep(grass_level-gll_gap,grass_level+gll_gap,DataIn.smoothHeight);
+	float f3 = smoothstep(rock_level-rl_gap,rock_level+rl_gap,DataIn.smoothHeight);
 	if (f1==0) color = vec4(0,0.20,0.525,1);
 	else if (f1<1) color = mix(vec4(0,0.20,0.525,1),vec4(0.3,0.76,0.15,1),f1);
 	else if (f2<1) color = mix(vec4(0.3,0.76,0.15,1),vec4(0.65,0.35,0.125,1),f2);

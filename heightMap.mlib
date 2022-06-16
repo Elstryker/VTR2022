@@ -50,10 +50,51 @@
 					<valueof uniform="shininess" 
 							 type="COLOR" context="CURRENT" 
 							 component="SHININESS" />
+
+					<valueof uniform="height_mult" 
+							 type="COLOR" context="CURRENT" 
+							 component="height_mult" />
 							 
+					<valueof uniform="plane_mult" 
+							 type="COLOR" context="CURRENT" 
+							 component="plane_mult" />
+
+					<valueof uniform="curve_min" 
+							 type="COLOR" context="CURRENT" 
+							 component="curve_min" />
+							 
+					<valueof uniform="curve_max" 
+							 type="COLOR" context="CURRENT" 
+							 component="curve_max" />
+							 
+					<valueof uniform="sea_level" 
+							 type="COLOR" context="CURRENT" 
+							 component="sea_level" />
+							 
+					<valueof uniform="sl_gap" 
+							 type="COLOR" context="CURRENT" 
+							 component="sl_gap" />
+
+					<valueof uniform="grass_level" 
+							 type="COLOR" context="CURRENT" 
+							 component="grass_level" />
+							 
+					<valueof uniform="gll_gap" 
+							 type="COLOR" context="CURRENT" 
+							 component="gll_gap" />
+
+					<valueof uniform="rock_level" 
+							 type="COLOR" context="CURRENT" 
+							 component="rock_level" />
+							 
+					<valueof uniform="rl_gap" 
+							 type="COLOR" context="CURRENT" 
+							 component="rl_gap" />
+
 					<valueof uniform="l_dir" 
 							 type="LIGHT" context="Sun"
 							 component="DIRECTION" />
+												
 				</values>
 			</shader>
 			<textures>

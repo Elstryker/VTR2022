@@ -3,6 +3,11 @@
 uniform sampler2D height_map;
 uniform sampler2D color_map;
 
+uniform float height_mult;
+uniform float plane_mult;
+uniform float curve_min;
+uniform float curve_max;
+
 uniform	mat4 m_pvm;
 uniform	mat4 m_viewModel;
 uniform	mat4 m_view;
@@ -19,18 +24,20 @@ out Data {
 	vec3 normal;
 	vec3 l_dir;
     vec2 texCoord;
+	float smoothHeight;
 } DataOut;
 
 void main () {
 
 	float height = texture(height_map, texCoord0).r;
+	float f1 = smoothstep(curve_min,curve_max,height);
 
 	DataOut.normal = normalize(m_normal * normal);
 	DataOut.eye = -(m_viewModel * position);
 	DataOut.l_dir = normalize(vec3(m_view * -l_dir));
     DataOut.texCoord = texCoord0;
+	DataOut.smoothHeight = f1*height;
 
 
-
-	gl_Position = m_pvm * normalize ((position + vec4(0,height,0,1)) * vec4(20,8,20,1));	
+	gl_Position = m_pvm * normalize ((position + vec4(0,height,0,1)) * vec4(plane_mult,height_mult*f1,plane_mult,1));	
 }

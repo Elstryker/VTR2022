@@ -1,6 +1,20 @@
 <?xml version="1.0" ?>
 <project name="Terrain Generator" >
 	<assets>
+
+		<attributes>
+			<attribute type="COLOR" name="height_mult" data="FLOAT" value=8.0 />
+			<attribute type="COLOR" name="plane_mult" data="FLOAT" value=20.0 />
+			<attribute type="COLOR" name="curve_min" data="FLOAT" value=0.3 />
+			<attribute type="COLOR" name="curve_max" data="FLOAT" value=0.5 />
+
+			<attribute type="COLOR" name="sea_level" data="FLOAT" value=0.2 />
+			<attribute type="COLOR" name="sl_gap" data="FLOAT" value=0.01 />
+			<attribute type="COLOR" name="grass_level" data="FLOAT" value=0.55 />
+			<attribute type="COLOR" name="gll_gap" data="FLOAT" value=0.01 />
+			<attribute type="COLOR" name="rock_level" data="FLOAT" value=0.85 />
+			<attribute type="COLOR" name="rl_gap" data="FLOAT" value=0.01 />
+		</attributes>
 	
 		<scenes>
 			<scene name="MyScene" param="UNITIZE SWAP_YZ">
@@ -52,4 +66,30 @@
 			</pass>
 		</pipeline>
 	</pipelines>
+	<interface>
+		<window label="Map Form">
+			<var label="height_mult" 
+				type="COLOR" context="HeightMap::terrainG" component="height_mult" def="min=1 max=100 step=0.01"/>
+			<var label="plane_mult" 
+				type="COLOR" context="HeightMap::terrainG" component="plane_mult" def="min=1 max=100 step=1"/>
+			<var label="curve_min" 
+				type="COLOR" context="HeightMap::terrainG" component="curve_min" def="min=0 max=1 step=0.01"/>
+			<var label="curve_max" 
+				type="COLOR" context="HeightMap::terrainG" component="curve_max" def="min=0 max=1 step=0.01"/>
+		</window>
+		<window label="Color Levels">
+			<var label="sea_level" 
+				type="COLOR" context="HeightMap::terrainG" component="sea_level" def="min=0 max=1 step=0.01"/>
+			<var label="sl_gap" 
+				type="COLOR" context="HeightMap::terrainG" component="sl_gap" def="min=0 max=0.04 step=0.001"/>
+			<var label="grass_level" 
+				type="COLOR" context="HeightMap::terrainG" component="grass_level" def="min=0 max=1 step=0.01"/>
+			<var label="gl_gap" 
+				type="COLOR" context="HeightMap::terrainG" component="gll_gap" def="min=0 max=0.04 step=0.001"/>
+			<var label="rock_level" 
+				type="COLOR" context="HeightMap::terrainG" component="rock_level" def="min=0 max=1 step=0.01"/>
+			<var label="rl_gap" 
+				type="COLOR" context="HeightMap::terrainG" component="rl_gap" def="min=0 max=0.04 step=0.001"/>
+		</window>
+	</interface>
 </project>
