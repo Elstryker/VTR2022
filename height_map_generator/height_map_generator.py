@@ -61,7 +61,7 @@ def get_random_noise_map():
     except:
         seed = int(datetime.now().timestamp())
 
-    pic = open_simplex_noise.open_simplex_map(width,height,seed)
+    pic = random_noise.random_map(width,height,seed)
     cv2.imwrite(img_path,pic)
     print("\nImage created with success!")
 
@@ -78,7 +78,7 @@ def get_open_simplex_map():
     except:
         seed = int(datetime.now().timestamp())
 
-    pic = random_noise.random_map(width,height,seed)
+    pic = open_simplex_noise.open_simplex_map(width,height,seed)
     cv2.imwrite(img_path,pic)
     print("\nImage created with success!")
 

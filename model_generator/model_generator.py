@@ -1,6 +1,7 @@
 import sys, cv2
 import numpy as np
 
+AMPLITUDE = 30
 
 def main():
     if len(sys.argv) == 1:
@@ -26,7 +27,8 @@ def calculateVertexes(image):
 
     for i,row in enumerate(image):
         for j,height in enumerate(row):
-            vertexes[i][j] = (i,round(height,1),j)
+            realHeight = ((round(height,1))/255.0) * AMPLITUDE
+            vertexes[i][j] = (i,realHeight,j)
 
     return vertexes
     
@@ -113,8 +115,8 @@ def generateOBJFile(vertexes,texCoords,normals):
             v2 = (len(vertexes[i]) * i + j + 1) + 1
             v3 = (len(vertexes[i]) * (i+1) + j) + 1
             v4 = (len(vertexes[i]) * (i+1) + j + 1) + 1
-            objRow1 = f'f {v1}/{v1}/{v1} {v3}/{v3}/{v3} {v2}/{v2}/{v2}\n'
-            objRow2 = f'f {v2}/{v2}/{v2} {v3}/{v3}/{v3} {v4}/{v4}/{v4}\n'
+            objRow1 = f'f {v1}/{v1}/{v1} {v2}/{v2}/{v2} {v3}/{v3}/{v3}\n'
+            objRow2 = f'f {v2}/{v2}/{v2} {v4}/{v4}/{v4} {v3}/{v3}/{v3}\n'
             objContent += objRow1
             objContent += objRow2
 

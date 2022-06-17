@@ -19,8 +19,8 @@
 				<viewport name="MainViewport" />
 				<NEAR value= 0.001/>
 				<FAR value= 1000/>
-				<POSITION x=0 y=3 z=0 />
-				<VIEW x=0 y=0 z=1 />
+				<POSITION x=0 y=2 z=-1 />
+				<VIEW x=0 y=-2 z=1 />
 			</camera>
 		</cameras>
 

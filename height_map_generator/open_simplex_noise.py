@@ -12,8 +12,8 @@ def open_simplex_map(width, height, seed=DEFAULT_SEED):
     value = np.zeros((width,height,3))
     for y in range(height):
         for x in range(width):
-            nx = x - 0.5 # Dividing x by width will decrease the frequency
-            ny = y - 0.5 # Same as above
+            nx = (x - 0.5) / 50 # Dividing x by width will decrease the frequency
+            ny = (y - 0.5) / 50 # Same as above
             noiseValue = noise(nx, ny) * 255
             for z in range(3):
                 value[x][y][z] = noiseValue
