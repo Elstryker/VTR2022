@@ -1,6 +1,14 @@
 <?xml version="1.0" ?>
 <materialLib name="withModelM">
 
+    <textures>
+		<texture name="color_map" filename="textures/cmap.png" mipmap=true />
+		<texture name="sea" filename="textures/sea.jpg" mipmap=true />
+		<texture name="grass" filename="textures/relva.jpg" mipmap=true />
+		<texture name="rock" filename="textures/rock.jpg" mipmap=true />
+		<texture name="snow" filename="textures/snow.jpg" mipmap=true />
+	</textures>
+
 	<shaders>
 		<shader name="withModel" 		vs = "shaders/withModel.vert" 
 										ps = "shaders/withModel.frag" />
@@ -37,12 +45,43 @@
 					<valueof uniform="shininess" 
 							 type="COLOR" context="CURRENT" 
 							 component="SHININESS" />
+
+                    <valueof uniform="with_texture" 
+							 type="COLOR" context="CURRENT" 
+							 component="with_texture" />
+					
+					<valueof uniform="color_map"
+							 type="TEXTURE_BINDING" context="CURRENT"
+							 component="UNIT" id=0 />
+										
+					<valueof uniform="sea"
+							 type="TEXTURE_BINDING" context="CURRENT"
+							 component="UNIT" id=1 />
+					
+					<valueof uniform="grass"
+							 type="TEXTURE_BINDING" context="CURRENT"
+							 component="UNIT" id=2 />
+					
+					<valueof uniform="rock"
+							 type="TEXTURE_BINDING" context="CURRENT"
+							 component="UNIT" id=3 />
+					
+					<valueof uniform="snow"
+							 type="TEXTURE_BINDING" context="CURRENT"
+							 component="UNIT" id=4 />
 							 
 					<valueof uniform="l_dir" 
 							 type="LIGHT" context="Sun"
 							 component="DIRECTION" />
 				</values>
 			</shader>
+            <textures>
+				<texture name="color_map" UNIT = 0 />
+				<texture name="sea" UNIT = 1 />
+				<texture name="grass" UNIT = 2 />
+				<texture name="rock" UNIT = 3 />
+				<texture name="snow" UNIT = 4 />
+            </textures>
 		</material>
 	</materials>
 	

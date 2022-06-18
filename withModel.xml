@@ -2,6 +2,9 @@
 <project name="Terrain Generator" >
 	<assets>
 	
+        <attributes>
+            <attribute type="COLOR" name="with_texture" data="INT" value=0 />
+        </attributes>
 		<scenes>
 			<scene name="MyScene" param="UNITIZE SWAP_YZ">
 				<file name="models/file.obj"/>
@@ -36,23 +39,27 @@
 		
 	</assets>
 	
-    	<pipelines>
-		<pipeline name="lighting" default="true">
-			<pass class="default" name="pass1">
-				<scenes>
-					<scene name="MyScene" />				
-				</scenes>
-				<camera name="MainCamera" />
-				<lights>
-					<light name="Sun" />
-				</lights>
-				<injectionMaps>
-					<map toMaterial="*">
-						<shader fromMaterial ="withModel" fromLibrary="withModelM" />
-					</map>
-				</injectionMaps>
-			</pass>
-		</pipeline>
-	</pipelines>
+    <pipelines>
+        <pipeline name="textures" default="true">
+            <pass class="default" name="textureCoordinates">
+                <scenes>
+                    <scene name="MyScene" />                
+                </scenes>
+                <camera name="MainCamera" />
+                <lights>
+                    <light name="Sun" />
+                </lights>
+                <materialMaps toMaterial="*">
+                    <map fromMaterial ="*" toMaterial="withModel" toLibrary="withModelM" />
+                </materialMaps>
+            </pass>
+        </pipeline>
+    </pipelines>
+    <interface>
+        <window label="Color Levels">
+			<var label="with_texture" 
+				type="COLOR" context="withModelM::withModel" component="with_texture" def="min=0 max=1 step=1"/>
+        </window>
+    </interface>
 
 </project>

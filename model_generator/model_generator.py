@@ -1,55 +1,84 @@
 import sys, cv2
 import numpy as np
 
-AMPLITUDE = 30
-
 def main():
     if len(sys.argv) == 1:
-        print("Height Map need to be specified")
+        dim = int(input("Dimension: "))
+        spaceVertexes = float(input("SpaceBetweenVertexes: "))
+        generateGrid(dim,spaceVertexes)
         return
 
     elif len(sys.argv) > 2:
         print("Only one height map at a time")
         return
 
+    texChoice = bool(int(input("0) Texture Coordinates as Whole \n1) Texture Coordinates per Vertex")))
+    amplitudeC = input("Amplitude (defaults to 30): ")
+    if amplitudeC == '':
+        AMPLITUDE = 30
+    else:
+        AMPLITUDE = float(amplitudeC)
+    width = int(input("Width: "))
+    height = int(input("Height: "))
+
     image = cv2.imread(sys.argv[1]).astype('float32')
     image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-    vertexes = calculateVertexes(image)
-    texCoords = calculateTexCoords(vertexes)
+    vertexes = calculateVertexes(image,AMPLITUDE,width,height)
+    texCoords = calculateTexCoords(vertexes,texChoice)
     normals = calculateNormals(vertexes)
 
     generateOBJFile(vertexes,texCoords,normals)
 
     
-def calculateVertexes(image):
+def calculateVertexes(image,AMPLITUDE,width,height):
     vertexes = np.zeros(image.shape).tolist()
 
+    stepy = float( height / (len(vertexes) -1) )
+    stepx = float( width / (len(vertexes[0]) -1) )
+
+    currentY = 0
+
     for i,row in enumerate(image):
+        currentX = 0
         for j,height in enumerate(row):
             realHeight = ((round(height,1))/255.0) * AMPLITUDE
-            vertexes[i][j] = (i,realHeight,j)
+            vertexes[i][j] = (currentY,realHeight,currentX)
+            currentX += stepx
+        currentY += stepy
 
     return vertexes
     
-def calculateTexCoords(vertexes):
-    texCoords = np.zeros((len(vertexes),len(vertexes[0]))).tolist()
+def calculateTexCoords(vertexes,texChoice=False):
+    if not texChoice:
+        texCoords = np.zeros((len(vertexes),len(vertexes[0]))).tolist()
 
-    stepy = float( 1.0 / (len(vertexes) -1) )
-    stepx = float( 1.0 / (len(vertexes[0]) -1) )
+        stepy = float( 1.0 / (len(vertexes) -1) )
+        stepx = float( 1.0 / (len(vertexes[0]) -1) )
 
-    currentCoordY = 0
+        currentCoordY = 0
 
-    for i in range(len(vertexes)):
-        currentCoordX = 0
+        for i in range(len(vertexes)):
+            currentCoordX = 0
 
-        for j in range(len(vertexes[i])):
-            texCoords[i][j] = (round(currentCoordX,2),round(currentCoordY,2))
-            currentCoordX += stepx
+            for j in range(len(vertexes[i])):
+                texCoords[i][j] = (round(currentCoordX,2),round(currentCoordY,2))
+                currentCoordX += stepx
 
-        currentCoordY += stepy
+            currentCoordY += stepy
 
-    return texCoords
+        return texCoords
+
+    else:
+        texCoords = np.zeros((len(vertexes),len(vertexes[0]))).tolist()
+
+        for i in range(len(vertexes)):
+            currentCoordX = 0
+
+            for j in range(len(vertexes[i])):
+                texCoords[i][j] = (i,j)
+
+        return texCoords
             
 def normalize(v):
     norm = np.linalg.norm(v)
@@ -125,6 +154,21 @@ def generateOBJFile(vertexes,texCoords,normals):
         f.write(objContent)
         f.flush()
 
+
+def generateGrid(dim,spaceVertexes):
+    num = int(dim/spaceVertexes) + 1
+    currentRow = 0
+    vertexes = np.zeros((num,num),dtype=object)
+    for row in range(num):
+        currentCol = 0
+        for col in range(num):
+            vertexes[row][col] = np.array([currentRow,0,currentCol])
+            currentCol += spaceVertexes
+        currentRow += spaceVertexes
+
+    texCoords = calculateTexCoords(vertexes)
+    normals = [[(0,1,0) for _ in range(num)] for _ in range(num)]
+    generateOBJFile(vertexes,texCoords,normals)
 
 
     
