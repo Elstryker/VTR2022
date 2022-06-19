@@ -12,7 +12,7 @@ def main():
         print("Only one height map at a time")
         return
 
-    texChoice = bool(int(input("0) Texture Coordinates as Whole \n1) Texture Coordinates per Vertex")))
+    texChoice = bool(int(input("0) Texture Coordinates as Whole \n1) Texture Coordinates per Vertex\n-> ")))
     amplitudeC = input("Amplitude (defaults to 30): ")
     if amplitudeC == '':
         AMPLITUDE = 30
@@ -43,7 +43,7 @@ def calculateVertexes(image,AMPLITUDE,width,height):
         currentX = 0
         for j,height in enumerate(row):
             realHeight = ((round(height,1))/255.0) * AMPLITUDE
-            vertexes[i][j] = (currentY,realHeight,currentX)
+            vertexes[i][j] = (currentX,realHeight,currentY)
             currentX += stepx
         currentY += stepy
 
@@ -56,7 +56,7 @@ def calculateTexCoords(vertexes,texChoice=False):
         stepy = float( 1.0 / (len(vertexes) -1) )
         stepx = float( 1.0 / (len(vertexes[0]) -1) )
 
-        currentCoordY = 0
+        currentCoordY = 1
 
         for i in range(len(vertexes)):
             currentCoordX = 0
@@ -65,7 +65,7 @@ def calculateTexCoords(vertexes,texChoice=False):
                 texCoords[i][j] = (round(currentCoordX,2),round(currentCoordY,2))
                 currentCoordX += stepx
 
-            currentCoordY += stepy
+            currentCoordY -= stepy
 
         return texCoords
 
@@ -108,7 +108,7 @@ def calculateNormals(vertexes):
             vy = normalize([nextVY[0] - vertex[0],nextVY[1] - vertex[1],nextVY[2] - vertex[2]])
             vy = [round(y,3) for y in vy]
 
-            normals[i][j] = normalize(np.cross(vx,vy).tolist())
+            normals[i][j] = normalize(np.cross(vy,vx).tolist())
             normals[i][j] = [round(x,3) for x in normals[i][j]]
 
     return normals
@@ -144,8 +144,8 @@ def generateOBJFile(vertexes,texCoords,normals):
             v2 = (len(vertexes[i]) * i + j + 1) + 1
             v3 = (len(vertexes[i]) * (i+1) + j) + 1
             v4 = (len(vertexes[i]) * (i+1) + j + 1) + 1
-            objRow1 = f'f {v1}/{v1}/{v1} {v2}/{v2}/{v2} {v3}/{v3}/{v3}\n'
-            objRow2 = f'f {v2}/{v2}/{v2} {v4}/{v4}/{v4} {v3}/{v3}/{v3}\n'
+            objRow1 = f'f {v1}/{v1}/{v1} {v3}/{v3}/{v3} {v2}/{v2}/{v2}\n'
+            objRow2 = f'f {v2}/{v2}/{v2} {v3}/{v3}/{v3} {v4}/{v4}/{v4}\n'
             objContent += objRow1
             objContent += objRow2
 
