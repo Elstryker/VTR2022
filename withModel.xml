@@ -2,12 +2,23 @@
 <project name="Terrain Generator" >
 	<assets>
 	
-        <attributes>
-            <attribute type="COLOR" name="with_texture" data="INT" value=0 />
-        </attributes>
+		<attributes>
+			<attribute type="COLOR" name="sea_level" data="FLOAT" value=0.2 />
+			<attribute type="COLOR" name="sl_gap" data="FLOAT" value=0.01 />
+			<attribute type="COLOR" name="sand_level" data="FLOAT" value=0.2 />
+			<attribute type="COLOR" name="ssl_gap" data="FLOAT" value=0.01 />
+			<attribute type="COLOR" name="grass_level" data="FLOAT" value=0.2 />
+			<attribute type="COLOR" name="gll_gap" data="FLOAT" value=0.01 />
+			<attribute type="COLOR" name="rock_level" data="FLOAT" value=0.2 />
+			<attribute type="COLOR" name="rl_gap" data="FLOAT" value=0.01 />
+
+			<attribute type="COLOR" name="with_texture" data="INT" value=0 />
+			<attribute type="COLOR" name="clear_sea" data="INT" value=0 />
+		</attributes>
+	
 		<scenes>
 			<scene name="MyScene" param="UNITIZE SWAP_YZ">
-				<file name="models/file.obj"/>
+				<file name="models/3good.obj"/>
 			</scene>
 		</scenes>
 		
@@ -55,11 +66,29 @@
             </pass>
         </pipeline>
     </pipelines>
-    <interface>
-        <window label="Color Levels">
+	<interface>
+		<window label="Color Levels">
 			<var label="with_texture" 
 				type="COLOR" context="withModelM::withModel" component="with_texture" def="min=0 max=1 step=1"/>
-        </window>
-    </interface>
+			<var label="clear_sea"
+				type="COLOR" context="withModelM::withModel" component="clear_sea" def="min=0 max=1 step=1"/>
+			<var label="sea_level" 
+				type="COLOR" context="withModelM::withModel" component="sea_level" def="min=-0.3 max=0.3 step=0.01"/>
+			<var label="sl_gap" 
+				type="COLOR" context="withModelM::withModel" component="sl_gap" def="min=0 max=0.04 step=0.001"/>
+			<var label="sand_level" 
+				type="COLOR" context="withModelM::withModel" component="sand_level" def="min=0 max=1 step=0.01"/>
+			<var label="ssl_gap" 
+				type="COLOR" context="withModelM::withModel" component="ssl_gap" def="min=0 max=0.04 step=0.001"/>			
+			<var label="grass_level" 
+				type="COLOR" context="withModelM::withModel" component="grass_level" def="min=-0.3 max=0.3 step=0.01"/>
+			<var label="gl_gap" 
+				type="COLOR" context="withModelM::withModel" component="gll_gap" def="min=0 max=0.04 step=0.001"/>
+			<var label="rock_level" 
+				type="COLOR" context="withModelM::withModel" component="rock_level" def="min=-0.3 max=0.3 step=0.01"/>
+			<var label="rl_gap" 
+				type="COLOR" context="withModelM::withModel" component="rl_gap" def="min=0 max=0.04 step=0.001"/>
+		</window>
+	</interface>
 
 </project>

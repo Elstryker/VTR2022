@@ -10,6 +10,8 @@
 
 			<attribute type="COLOR" name="sea_level" data="FLOAT" value=0.2 />
 			<attribute type="COLOR" name="sl_gap" data="FLOAT" value=0.01 />
+			<attribute type="COLOR" name="sand_level" data="FLOAT" value=0.3 />
+			<attribute type="COLOR" name="ssl_gap" data="FLOAT" value=0.01 />
 			<attribute type="COLOR" name="grass_level" data="FLOAT" value=0.55 />
 			<attribute type="COLOR" name="gll_gap" data="FLOAT" value=0.01 />
 			<attribute type="COLOR" name="rock_level" data="FLOAT" value=0.85 />
@@ -42,7 +44,7 @@
 
 		<lights>
 			<light name="Sun">
-				<DIRECTION x=-2 y=-1 z=-2 />
+				<DIRECTION x=1 y=0 z=0 />
 			</light>
 		</lights>
 
@@ -86,6 +88,10 @@
 				type="COLOR" context="HeightMap::terrainG" component="sea_level" def="min=0 max=1 step=0.01"/>
 			<var label="sl_gap" 
 				type="COLOR" context="HeightMap::terrainG" component="sl_gap" def="min=0 max=0.04 step=0.001"/>
+			<var label="sand_level" 
+				type="COLOR" context="HeightMap::terrainG" component="sand_level" def="min=0 max=1 step=0.01"/>
+			<var label="ssl_gap" 
+				type="COLOR" context="HeightMap::terrainG" component="ssl_gap" def="min=0 max=0.04 step=0.001"/>
 			<var label="grass_level" 
 				type="COLOR" context="HeightMap::terrainG" component="grass_level" def="min=0 max=1 step=0.01"/>
 			<var label="gl_gap" 

@@ -162,7 +162,7 @@ def generateGrid(dim,spaceVertexes):
     for row in range(num):
         currentCol = 0
         for col in range(num):
-            vertexes[row][col] = np.array([currentRow,0,currentCol])
+            vertexes[row][col] = np.array([currentCol,0,currentRow])
             currentCol += spaceVertexes
         currentRow += spaceVertexes
 
