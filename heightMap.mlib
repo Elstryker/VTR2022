@@ -104,7 +104,11 @@
 					<valueof uniform="with_texture" 
 							 type="COLOR" context="CURRENT" 
 							 component="with_texture" />
-							 
+
+                    <valueof uniform="clear_sea" 
+							 type="COLOR" context="CURRENT" 
+							 component="clear_sea" />
+
 					<valueof uniform="sea_level" 
 							 type="COLOR" context="CURRENT" 
 							 component="sea_level" />

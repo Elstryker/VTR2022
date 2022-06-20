@@ -1,6 +1,7 @@
 #version 330
 
 uniform int with_texture;
+uniform int clear_sea;
 uniform float sea_level;
 uniform float sl_gap;
 uniform float sand_level;
@@ -43,7 +44,7 @@ void main() {
 	vec3 xdiv = vec3(dFdx(DataIn.position));
 	vec3 ydiv = vec3(dFdy(DataIn.position));
 	//vec3 normall = normalize(m_normal * cross(xdiv, ydiv));
-	if (DataIn.smoothHeight <= sea_level-sl_gap) normall = normalize(m_normal * vec3(0,1,0));
+	if (DataIn.smoothHeight <= sea_level-sl_gap && clear_sea == 1) normall = normalize(m_normal * vec3(0,1,0));
 
 	//get textures
 	vec4 sea_t = texture(sea, DataIn.texCoord);
