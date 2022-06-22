@@ -2,14 +2,14 @@
 <materialLib name="HeightMap">
 
 	<textures>
-		<texture name="height_map" filename="textures/ngood.png" mipmap=true />
+		<texture name="height_map" filename="perlin4o.png" mipmap=true />
 		<texture name="color_map" filename="textures/cmap.png" mipmap=true />
 		<texture name="sea" filename="textures/sea.jpg" mipmap=true />
 		<texture name="sand" filename="textures/sand.jpg" mipmap=true />
 		<texture name="grass" filename="textures/relva.jpg" mipmap=true />
 		<texture name="rock" filename="textures/rock.jpg" mipmap=true />
 		<texture name="snow" filename="textures/snow.jpg" mipmap=true />
-		<texture name="normal_map" filename="textures/nmap.png" mipmap=true />
+		<texture name="normal_map" filename="textures/perlin4o_n.png" mipmap=true />
 	</textures>
 
 	<shaders>
@@ -141,10 +141,30 @@
 							 type="COLOR" context="CURRENT" 
 							 component="rl_gap" />
 
+					<valueof uniform="sea_color" 
+							 type="COLOR" context="CURRENT"
+							 component="sea_color" />
+
+					<valueof uniform="sand_color" 
+							 type="COLOR" context="CURRENT"
+							 component="sand_color" />
+
+					<valueof uniform="grass_color" 
+							 type="COLOR" context="CURRENT"
+							 component="grass_color" />
+
+					<valueof uniform="rock_color" 
+							 type="COLOR" context="CURRENT"
+							 component="rock_color" />
+
+					<valueof uniform="ice_color" 
+							 type="COLOR" context="CURRENT"
+							 component="ice_color" />
+
 					<valueof uniform="l_dir" 
 							 type="LIGHT" context="Sun"
 							 component="DIRECTION" />
-												
+							 										
 				</values>
 			</shader>
 			<textures>

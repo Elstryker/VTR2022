@@ -19,6 +19,12 @@
 
 			<attribute type="COLOR" name="with_texture" data="INT" value=0 />
 			<attribute type="COLOR" name="clear_sea" data="INT" value=0 />
+
+			<attribute type="COLOR" name="sea_color" data="VEC4" r=0.0 g=0.2 b=0.525 />
+			<attribute type="COLOR" name="sand_color" data="VEC4" r=0.83 g=0.78 b=0.15 />
+			<attribute type="COLOR" name="grass_color" data="VEC4" r=0.3 g=0.76 b=0.15 />
+			<attribute type="COLOR" name="rock_color" data="VEC4" r=0.65 g=0.35 b=0.125 />
+			<attribute type="COLOR" name="ice_color" data="VEC4" r=0.98 g=0.98 b=0.98 />
 		</attributes>
 	
 		<scenes>
@@ -87,22 +93,32 @@
 				type="COLOR" context="HeightMap::terrainG" component="with_texture" def="min=0 max=1 step=1"/>
 			<var label="clear_sea"
 				type="COLOR" context="HeightMap::terrainG" component="clear_sea" def="min=0 max=1 step=1"/>
+			<var label="sea_color"
+				type="COLOR" context="HeightMap::terrainG" component="sea_color" mode="COLOR"/>
 			<var label="sea_level" 
 				type="COLOR" context="HeightMap::terrainG" component="sea_level" def="min=0 max=1 step=0.01"/>
 			<var label="sl_gap" 
 				type="COLOR" context="HeightMap::terrainG" component="sl_gap" def="min=0 max=0.04 step=0.001"/>
+			<var label="sand_color"
+				type="COLOR" context="HeightMap::terrainG" component="sand_color" mode="COLOR"/>
 			<var label="sand_level" 
 				type="COLOR" context="HeightMap::terrainG" component="sand_level" def="min=0 max=1 step=0.01"/>
 			<var label="ssl_gap" 
 				type="COLOR" context="HeightMap::terrainG" component="ssl_gap" def="min=0 max=0.04 step=0.001"/>
+			<var label="grass_color"
+				type="COLOR" context="HeightMap::terrainG" component="grass_color" mode="COLOR"/>
 			<var label="grass_level" 
 				type="COLOR" context="HeightMap::terrainG" component="grass_level" def="min=0 max=1 step=0.01"/>
 			<var label="gl_gap" 
 				type="COLOR" context="HeightMap::terrainG" component="gll_gap" def="min=0 max=0.04 step=0.001"/>
+			<var label="rock_color"
+				type="COLOR" context="HeightMap::terrainG" component="rock_color" mode="COLOR"/>
 			<var label="rock_level" 
 				type="COLOR" context="HeightMap::terrainG" component="rock_level" def="min=0 max=1 step=0.01"/>
 			<var label="rl_gap" 
 				type="COLOR" context="HeightMap::terrainG" component="rl_gap" def="min=0 max=0.04 step=0.001"/>
+			<var label="ice_color"
+				type="COLOR" context="HeightMap::terrainG" component="ice_color" mode="COLOR"/>
 		</window>
 	</interface>
 </project>

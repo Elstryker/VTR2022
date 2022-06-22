@@ -111,6 +111,26 @@
 							 type="COLOR" context="CURRENT" 
 							 component="rl_gap" />
 
+					<valueof uniform="sea_color" 
+							 type="COLOR" context="CURRENT"
+							 component="sea_color" />
+
+					<valueof uniform="sand_color" 
+							 type="COLOR" context="CURRENT"
+							 component="sand_color" />
+
+					<valueof uniform="grass_color" 
+							 type="COLOR" context="CURRENT"
+							 component="grass_color" />
+
+					<valueof uniform="rock_color" 
+							 type="COLOR" context="CURRENT"
+							 component="rock_color" />
+
+					<valueof uniform="ice_color" 
+							 type="COLOR" context="CURRENT"
+							 component="ice_color" />
+
 					<valueof uniform="l_dir" 
 							 type="LIGHT" context="Sun"
 							 component="DIRECTION" />

@@ -19,6 +19,12 @@ uniform sampler2D grass;
 uniform sampler2D rock;
 uniform sampler2D snow;
 
+uniform vec4 sea_color;
+uniform vec4 sand_color;
+uniform vec4 grass_color;
+uniform vec4 rock_color;
+uniform vec4 ice_color;
+
 uniform	vec4 diffuse;
 uniform	vec4 specular;
 uniform	float shininess;
@@ -70,11 +76,11 @@ void main() {
 	float f4 = smoothstep(rock_level-rl_gap,rock_level+rl_gap,DataIn.height);
 
 	if (with_texture==0){
-		if (f1<1) color = mix(vec4(0,0.20,0.525,1),vec4(0.83,0.78,0.46,1),f1);
-		else if (f2<1) color = mix(vec4(0.83,0.78,0.46,1),vec4(0.3,0.76,0.15,1),f2);
-		else if (f3<1) color = mix(vec4(0.3,0.76,0.15,1),vec4(0.65,0.35,0.125,1),f3);
-		else if (f4<1) color = mix(vec4(0.65,0.35,0.125,1),vec4(0.98,0.98,0.98,1),f4);
-		else color = vec4(0.98,0.98,0.98,1);
+		if (f1<1) color = mix(sea_color,sand_color,f1);
+		else if (f2<1) color = mix(sand_color,grass_color,f2);
+		else if (f3<1) color = mix(grass_color,rock_color,f3);
+		else if (f4<1) color = mix(rock_color,ice_color,f4);
+		else color = ice_color;
 	}
 	else{
 		if (f1<1) color = mix(sea_t,sand_t,f1);
